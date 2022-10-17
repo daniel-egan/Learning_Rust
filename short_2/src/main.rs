@@ -1,25 +1,26 @@
 use std::io;
 
 fn main() {
-    let ballon_volume = 7;
+    let ballon_volume = 0.07;
     println!("Each ballon has a volume of {}m^3", ballon_volume);
     balloon_number(ballon_volume);
 }
 
-fn balloon_number(balloon_volume: i32){
-    let room_volume = room_volume();
+fn balloon_number(balloon_volume: f32){
+    let mut room_volume = room_volume();
+    room_volume = room_volume / 1000000 as f32;
     println!("The volume of the room is... {}m^3", room_volume);
     // {1} will use the first (not 0th) value given after the "" so in this example room_volume
     println!("The total number of balloons is {1} / {0} which = {2}", balloon_volume, room_volume, room_volume / balloon_volume);
 
 }
 
-fn room_volume() -> i32{
+fn room_volume() -> f32{
     let length = length();
     let height = height();
     let width = width();
 
-    let volume = length * width * height;
+    let volume: f32 = (length * width * height) as f32;
     volume
 }
 
